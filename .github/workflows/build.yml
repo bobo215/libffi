@@ -157,8 +157,8 @@ jobs:
         run: |
           set -euo pipefail
           cd "$(cygpath $RUNNER_WORKSPACE)/libffi"
-          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
-               tar --strip-components=2 -xvzf - ./rlgl/rlgl
+          wget -qO rlgl-windows-amd64.zip https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
+          unzip rlgl-windows-amd64.zip
           autoreconf -fvi
           ./configure \
             --enable-shared \
@@ -171,7 +171,7 @@ jobs:
           file */.libs/*ffi-*.dll
 
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
-          ./rlgl/rlgl e \
+          ./rlgl/rlgl.exe e \
                           -l project=libffi \
                           -l sha=${GITHUB_SHA:0:7} \
                           -l CC=${{ matrix.compiler }} \
@@ -222,8 +222,8 @@ jobs:
       - name: Build and test
         run: |
           cd $(cygpath $RUNNER_WORKSPACE)/libffi
-          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
-               tar --strip-components=2 -xvzf - ./rlgl/rlgl
+          wget -qO rlgl-windows-amd64.zip https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
+          unzip rlgl-windows-amd64.zip
           autoreconf -f -v -i
           ./configure \
             --enable-shared \
@@ -246,7 +246,7 @@ jobs:
           cp $(find . -name 'libffi-?.dll') ${{ matrix.host }}/testsuite/
           find ./ -name ffi.h
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
-          ./rlgl/rlgl e \
+          ./rlgl/rlgl.exe e \
                           -l project=libffi \
                           -l sha=${GITHUB_SHA:0:7} \
                           -l CC=msvcc.sh \
