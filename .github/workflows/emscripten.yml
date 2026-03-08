@@ -101,7 +101,7 @@ jobs:
       - name: Install rlgl and run
         run: |
           wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
-               tar --strip-components=2 -xvzf - ./rlgl/rlgl;
+               tar -xvzf - rlgl;
           ./rlgl e -l project=libffi -l sha=${GITHUB_SHA:0:7} -l CC='emcc' -l host=wasm32-unknown-linux --policy=https://github.com/libffi/rlgl-policy.git testsuite/libffi.log
           exit $?
 
@@ -208,6 +208,6 @@ jobs:
         if: success() || failure()
         run: |
           wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
-               tar --strip-components=2 -xvzf - ./rlgl/rlgl;
+               tar -xvzf - rlgl;
           ./rlgl e -l project=libffi -l sha=${GITHUB_SHA:0:7} -l CC='emcc' -l host=${{ matrix.browser }} --policy=https://github.com/libffi/rlgl-policy.git testsuite/emscripten/test-results/junit.xml
           exit $?
