@@ -72,7 +72,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-13, macos-14, macos-15]
+        platform: [macos-14, macos-15]
         compilers: [CC=gcc-15 CXX=g++-15, CC=clang CXX=g++-15]
 
     steps:
@@ -172,7 +172,7 @@ jobs:
 
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
           ./rlgl/rlgl.exe e \
-                          --policy=https://github.com/libffi/rlgl-policy.git $(find . -name libffi.log)
+                          --policy=https://github.com/bobo215/rlgl-policy.git $(find . -name libffi.log)
 
   build-msvc:
     name: Windows ${{ matrix.width }}-bit Visual C++
@@ -243,7 +243,7 @@ jobs:
           find ./ -name ffi.h
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
           ./rlgl/rlgl.exe e \
-                          --policy=https://github.com/libffi/rlgl-policy.git $(find . -name libffi.log)
+                          --policy=https://github.com/bobo215/rlgl-policy.git $(find . -name libffi.log)
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
 
       - name: Add meta information to DLL

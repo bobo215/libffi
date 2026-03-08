@@ -102,7 +102,7 @@ jobs:
         run: |
           wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
                tar --strip-components=1 -xvzf - rlgl/rlgl;
-          ./rlgl e --policy=https://github.com/libffi/rlgl-policy.git testsuite/libffi.log
+          ./rlgl e --policy=https://github.com/bobo215/rlgl-policy.git testsuite/libffi.log
           exit $?
 
   build:
@@ -209,5 +209,5 @@ jobs:
         run: |
           wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
                tar --strip-components=1 -xvzf - rlgl/rlgl;
-          ./rlgl e --policy=https://github.com/libffi/rlgl-policy.git testsuite/emscripten/test-results/junit.xml
+          ./rlgl e --policy=https://github.com/bobo215/rlgl-policy.git testsuite/emscripten/test-results/junit.xml
           exit $?

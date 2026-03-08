@@ -5,7 +5,7 @@ if [[ $RUNNER_OS != 'Linux' ]]; then
     brew update --verbose
     # brew update > brew-update.log 2>&1
     # fix an issue with libtool on travis by reinstalling it
-    brew uninstall libtool;
+    brew uninstall libtool || true;
     brew install automake libtool dejagnu gcc@15;
 
     # Download and extract the rlgl client
