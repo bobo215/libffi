@@ -172,10 +172,6 @@ jobs:
 
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
           ./rlgl/rlgl.exe e \
-                          -l project=libffi \
-                          -l sha=${GITHUB_SHA:0:7} \
-                          -l CC=${{ matrix.compiler }} \
-                          -l host=${{ matrix.host }} \
                           --policy=https://github.com/libffi/rlgl-policy.git $(find . -name libffi.log)
 
   build-msvc:
@@ -247,10 +243,6 @@ jobs:
           find ./ -name ffi.h
           TERM=none DEJAGNU=$(pwd)/.ci/site.exp BOARDSDIR=$(pwd)/.ci GCC_COLORS= make check || true
           ./rlgl/rlgl.exe e \
-                          -l project=libffi \
-                          -l sha=${GITHUB_SHA:0:7} \
-                          -l CC=msvcc.sh \
-                          -l host=${{ matrix.host }} \
                           --policy=https://github.com/libffi/rlgl-policy.git $(find . -name libffi.log)
         shell: C:\tools\cygwin\bin\bash.exe --login --norc -eo pipefail -o igncr '{0}'
 
