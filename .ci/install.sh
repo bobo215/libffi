@@ -10,7 +10,7 @@ if [[ $RUNNER_OS != 'Linux' ]]; then
 
     # Download and extract the rlgl client
     wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-darwin-amd64.tgz | \
-	      tar -xvzf - rlgl;
+	      tar --strip-components=1 -xvzf - ./rlgl/rlgl;
 
 else
     # Determine the rlgl archive for this architecture
@@ -24,7 +24,7 @@ else
 
     # Download and extract the rlgl client
     wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-${RLGL_ARCH}.tgz | \
-	      tar -xvzf - rlgl;
+	      tar --strip-components=1 -xvzf - ./rlgl/rlgl;
 
     sudo apt-get clean # clear the cache
     sudo apt-get update
