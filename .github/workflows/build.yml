@@ -157,7 +157,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "$(cygpath $RUNNER_WORKSPACE)/libffi"
-          wget -qO rlgl-windows-amd64.zip https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
+          wget https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
           unzip rlgl-windows-amd64.zip
           autoreconf -fvi
           ./configure \
@@ -222,7 +222,7 @@ jobs:
       - name: Build and test
         run: |
           cd $(cygpath $RUNNER_WORKSPACE)/libffi
-          wget -qO rlgl-windows-amd64.zip https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
+          wget https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-windows-amd64.zip
           unzip rlgl-windows-amd64.zip
           autoreconf -f -v -i
           ./configure \

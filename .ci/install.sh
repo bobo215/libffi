@@ -10,21 +10,28 @@ if [[ $RUNNER_OS != 'Linux' ]]; then
 
     # Download and extract the rlgl client
     wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-darwin-amd64.tgz | \
-	      tar --strip-components=1 -xvzf - ./rlgl/rlgl;
+	      tar --strip-components=1 -xvzf - rlgl/rlgl;
 
 else
-    # Determine the rlgl archive for this architecture
-    case $(uname -m) in
-        x86_64)  RLGL_ARCH=linux-amd64 ;;
-        aarch64) RLGL_ARCH=linux-arm ;;
-        ppc64le) RLGL_ARCH=linux-ppc64le ;;
-        s390x)   RLGL_ARCH=linux-s390x ;;
-        *)       RLGL_ARCH=linux-amd64 ;;
-    esac
-
     # Download and extract the rlgl client
-    wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-${RLGL_ARCH}.tgz | \
-	      tar --strip-components=1 -xvzf - ./rlgl/rlgl;
+    case $HOST in
+	      aarch64-*linux-gnu)
+	          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-arm.tgz | \
+		            tar --strip-components=1 -xvzf - rlgl/rlgl;
+	          ;;
+	      ppc64le-linux-gnu)
+	          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-ppc64le.tgz | \
+		            tar --strip-components=1 -xvzf - rlgl/rlgl;
+	          ;;
+	      s390x-linux-gnu)
+	          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-s390x.tgz | \
+		            tar --strip-components=1 -xvzf - rlgl/rlgl;
+	          ;;
+	      *)
+	          wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
+		            tar --strip-components=1 -xvzf - rlgl/rlgl;
+	          ;;
+    esac
 
     sudo apt-get clean # clear the cache
     sudo apt-get update
