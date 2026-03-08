@@ -9,29 +9,13 @@ if [[ $RUNNER_OS != 'Linux' ]]; then
     brew install automake libtool dejagnu gcc@15;
 
     # Download and extract the rlgl client
-    wget -qO - https://rl.gl/cli/rlgl-darwin-amd64.tgz | \
+    wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
 	      tar --strip-components=2 -xvzf - ./rlgl/rlgl;
 
 else
     # Download and extract the rlgl client
-    case $HOST in
-	      aarch64-*linux-gnu)
-	          wget -qO - https://rl.gl/cli/rlgl-linux-arm.tgz | \
-		            tar --strip-components=2 -xvzf - ./rlgl/rlgl;
-	          ;;
-	      ppc64le-linux-gnu)
-	          wget -qO - https://rl.gl/cli/rlgl-linux-ppc64le.tgz | \
-		            tar --strip-components=2 -xvzf - ./rlgl/rlgl;
-	          ;;
-	      s390x-linux-gnu)
-	          wget -qO - https://rl.gl/cli/rlgl-linux-s390x.tgz | \
-		            tar --strip-components=2 -xvzf - ./rlgl/rlgl;
-	          ;;
-	      *)
-	          wget -qO - https://rl.gl/cli/rlgl-linux-amd64.tgz | \
-		            tar --strip-components=2 -xvzf - ./rlgl/rlgl;
-	          ;;
-    esac
+    wget -qO - https://github.com/bobo215/red-light-green-light/releases/download/v0.1.0/rlgl-linux-amd64.tgz | \
+	      tar --strip-components=2 -xvzf - ./rlgl/rlgl;
 
     sudo apt-get clean # clear the cache
     sudo apt-get update
